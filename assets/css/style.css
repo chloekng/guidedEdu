@@ -208,9 +208,8 @@ body {
   font-weight: 500;
   width: 90%;
   position: relative;
-  /* border: 1px solid tomato; */
   height: 2.3em;
-  /* border: 1px solid tomato; */
+
 }
 
 .button {
@@ -240,8 +239,8 @@ body {
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
   border-radius: 32px;
   margin-top: 96px;
-/*  display: flex;
-  flex-direction: row;*/
+  display: flex;
+  flex-direction: row;
 }
 
 .closeupImage {
@@ -257,7 +256,91 @@ body {
 
 .closeupContent {
   width: 50%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
+}
+
+.closeupTop {
+
+}
+
+.closeupActions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.closeupIcons {
+  margin-left: -12px;
+
+}
+
+.closeupIcon {
+  padding: 12px;
+  cursor: pointer;
+
+}
+
+.saveButton {
+  padding: 14.5px 16px 14.5px 16px;
+  background-color: #E60023;
+  color: #ffffff;
+  border-radius: 24px;
+
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 20px;
+  text-decoration-line: underline;
+  font-weight: 350;
+}
+
+.closeupFollow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.closeupAvatar {
+  height: 40px;
+  width: 40px;
+}
+
+
+.closeupFollowLeft {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.closeupText {
+  margin-left: 8px;
+  font-weight: normal;
+}
+
+.followButton {
+  padding: 14.5px 16px 14.5px 16px;
+  background-color: #Efefef;
+  color: #333333;
+  border-radius: 24px;
+}
+
+.closeupAttribution {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 
