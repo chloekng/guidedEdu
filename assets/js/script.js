@@ -2,7 +2,7 @@
 $(document).ready(function() {
 
   // make the grid
-  if($('body').is('.homefeed')){
+  // if($('body').is('.homefeed')){
 
     var colcade = new Colcade( '.grid', {
       columns: '.grid-col',
@@ -116,7 +116,7 @@ $(document).ready(function() {
 
   });
 
-  }
+  // }
 
 
 
