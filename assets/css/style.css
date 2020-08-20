@@ -245,10 +245,9 @@ body {
 }
 
 .closeupImage {
-/*  background-image: url("assets/img/pin23.jpg");*/
+/*  background-image: url("../img/pin33.jpg");*/
   background-size: cover;
   background-position: center center;
-  border: 1px solid tomato;
   width: 50%;
   height: 100%;
   border-radius: 32px 0px 0px 32px;

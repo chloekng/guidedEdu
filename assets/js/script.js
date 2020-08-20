@@ -120,17 +120,23 @@ $(document).ready(function() {
 
 
 
+
+
   // grid item to closeup
   $(".grid-item").click(function() {
-    console.log($(this)[0].style.backgroundImage);
     let image = $(this)[0].style.backgroundImage;
 
+    localStorage.setItem("imageURL", image);
+
     window.location.href = "closeup.html";
-    console.log($(".closeupImage"))
-    $(".closeupImage").css("background-image", image);
+
 
 
   });
+
+  // closeup 
+
+  $(".closeupImage").css('background-image', localStorage.getItem('imageURL'));  
 
   // closeup back
 
