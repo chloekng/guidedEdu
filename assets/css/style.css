@@ -1,5 +1,5 @@
 body {
-  font-family: "sf pro display", Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 600; 
   display: flex;
   justify-content: center;
@@ -25,6 +25,8 @@ body {
 
 }
 */
+
+/*NAVBAR*/
 
 .navBar {
   width: 100%;
@@ -67,6 +69,7 @@ body {
 }
 
 
+/*GRID*/
 
 .grid {
   width: 1496px;
@@ -120,6 +123,8 @@ body {
 }
 
 
+/*MODAL GLOBAL
+*/
 
 .modal {
   width: 248px;
@@ -139,6 +144,14 @@ body {
 
 }
 
+.modal-X {
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
 .modal-collapsed {
   width: 100%;
   height: 100%;
@@ -153,11 +166,12 @@ body {
 
 
 .masonry-bg {
-  /* position: absolute; */
+/*  position: absolute; */
   width: 100%;
   height: 136px;
   background-color: #007cff;
   border-radius: 16px 16px 0px 0px;
+  position: relative;
   
 }
 
@@ -165,6 +179,8 @@ body {
   height: 0;
   transition: var(--short) var(--easeInOut);
 } */
+
+/*MODAL HF*/
 
 .masonry { /* Masonry container */
   column-count: 5;
@@ -180,7 +196,7 @@ body {
 .item { /* Masonry bricks or child elements */
   margin-bottom: 4px;
   border-radius: 8px; 
-  border: 1px solid #ffffff; 
+  border: 1px solid rgba(255,255,255,.6); 
   height: 80px;
 
 }
@@ -195,11 +211,24 @@ body {
 
 .modal-text {
   text-align: center;
-  color: black;
   font-size: 16px;
   padding: 0px 16px 0px 16px;
-  font-weight: 500;
-  margin-top: 16px 0px 16px 0px;
+  font-weight: 600;
+  margin: 16px 0px 8px 0px;
+
+}
+
+.modal-subtext {
+  text-align: center;
+  color: black;
+  padding: 0px 16px 0px 16px;
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 16px;
+
+/*  padding: 0px 16px 0px 16px;
+/*  font-weight: 500;
+  margin-top: 16px 0px 16px 0px;*/
   /* margin-top: 16px; */
 }
 
@@ -208,13 +237,13 @@ body {
   text-align: left;
   font-size: 16px;
   font-weight: 500;
-  width: 90%;
+  width: 85%;
   position: relative;
   height: 2.3em;
 
 }
 
-.button {
+.modal-button {
   padding: 14.5px 16px 16px 14.5px;
   border-radius: 24px;
   background-color: #efefef;
@@ -227,6 +256,8 @@ body {
 
 
 /*CLOSEUP*/
+
+
 
 .back {
   position: fixed;
@@ -318,6 +349,7 @@ h3 {
   font-weight: 350;
 }
 
+
 .closeupFollow {
   display: flex;
   flex-direction: row;
@@ -367,14 +399,81 @@ h3 {
 }
 
 
+/*MODAL CLOSEUP*/
 
-@keyframes clicking {
-  0%{transform: rotate(10deg) translate3d(15px, 0, 0)  }
-  60%{transform: rotate(-10deg) translate3d(-15px, 0, 0) scale(.8) }
-  100% {transform: rotate(-10deg) translate3d(-15px, 0, 0) scale(.8) }
+.modal-closeup {
+  width: 180px;
+  height: 104px;
+  border: 1px solid white;
+  border-radius: 0px 16px 0px 0px;
+/*  margin-left: -5;*/
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+/*  top: 30px;*/
+  bottom: -1px;
 }
 
-@keyframes clicked {
+.modal-closeup-left {
+  background-color: #ffffff;
+  opacity: .8;
+  flex-grow: 1;
+
+}
+
+.modal-closeup-right {
+  flex-grow: 1;
+
+  
+}
+
+.modal-save {
+  background-color: #ffffff;
+  padding: 8px;
+  color: #333333;
+  position: absolute;
+  border-radius: 32px;
+  right: 6px;
+  top: 6px;
+  font-size: 12px;
+
+}
+ 
+
+/*ANIMATION*/
+
+
+/*@keyframes clicking {
+  0%{transform: scale(1) }
+  30%{transform: scale(1) }
+  50%{transform: scale(1.1) }
+  90%{transform: scale(1) }
+  100% {transform: scale(1) }
+}*/
+
+@keyframes clicking {
+  0%{transform: scale(1)}
+  30%{transform: scale(1.2) translate3d(15px, 0, 0)}
+  90%{transform: scale(1) }
+  100% {transform: scale(1) }
+}
+
+@keyframes buttonClicked {
+  0%{transform: scale(1) }
+  70% {transform: scale(1) }
+  80%{transform: scale(1.1) }
+  100% {transform: scale(1) }
+}
+
+
+@keyframes clickingArc {
+  0%{transform: rotate(10deg) translate3d(15px, 0, 0)  }
+  60%{transform: rotate(-10deg) translate3d(-15px, 0, 0) scale(.8) }
+  100% {transform: rotate(-10deg) translate3d(-15px, 0, 0) scale(.8)}
+}
+
+
+@keyframes pinClicked {
   0%{background: rgba(0,0,0,0) }
   30% {background: #ffffff; transform: scale(1.3)}
   50% {background: #ffffff; transform:scale(1.3)}
