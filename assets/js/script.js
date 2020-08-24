@@ -146,17 +146,21 @@ $(document).ready(function() {
 
     //pointer animation 
     $(".handSvg").css("position", "absolute");
-    $(".handSvg").css("top", "21%");
+    $(".handSvg").css("top", "24%");
     $(".handSvg").css("left", "64%");
     $(".handSvg").css("animation-name", "clicking");
     $(".handSvg").css("animation-duration", "1.5s");
     $(".handSvg").css("animation-iteration-count", "infinite");
+    // $(".handSvg").css("animation-timing-function", "cubic-bezier(.63, .09, .3, .43");
+
     // $(".handSvg").css("animation-direction", "alternate");
 
     $(".modal-save").css("animation-name", "buttonClicked");
     $(".modal-save").css("animation-duration", "1.5s");
     $(".modal-save").css("animation-iteration-count", "infinite");
     $(".modal-save").css("animation-timing-function", "cubic-bezier(.63, .09, .3, .43");
+
+    //save pops into a collection grid with little lines coming out and then board title swoops in
 
 
 
@@ -175,6 +179,7 @@ $(document).ready(function() {
 
     $(".masonry-bg" ).slideUp(160);
     $(".masonry").hide(85);
+    $(".modal-closeup").hide(85);
     $(".handSvg").hide(85);
     $(".modal-button").hide(0);
     $(".modal-text").hide(0);
