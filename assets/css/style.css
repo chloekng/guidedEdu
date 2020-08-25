@@ -69,23 +69,6 @@ body {
 }
 
 
-.bottom-right {
-  position: fixed;
-  bottom: 32px;
-  right: 32px;
-  display: flex;
-  flex-direction: column;
-}
-
-.bottom-right-icon {
-  background: #ffffff;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
-  padding: 14px;
-  border-radius: 2000px;
-  margin: 8px;
-
-}
-
 /*GRID*/
 
 .grid {
@@ -161,17 +144,6 @@ body {
 
 }
 
-/*.modal-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 16px;
-  width: 100%;
-  position: absolute;
-  border: 1px solid tomato;
-
-}*/
-
 .modal-X {
   height: 16px;
   width: 16px;
@@ -196,37 +168,12 @@ body {
 .masonry-bg {
 /*  position: absolute; */
   width: 100%;
-  height: 164px;
+  height: 136px;
   background-color: #007cff;
   border-radius: 16px 16px 0px 0px;
   position: relative;
-  overflow: hidden;
   
 }
-
-
-.modal-dots-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 8px;
-  position: absolute;
-  margin-top: 20px;
-}
-
-.modal-dot {
-  height: 8px;
-  width: 8px;
-  background-color: rgba(255,255,255,.4);
-  border-radius: 1000px;
-  margin: 0px 4px 0px 4px;
-
-}
-
-.modal-dot-active {
-  background-color: rgba(255,255,255,1);
-}
-
 
 /* .hide {
   height: 0;
@@ -240,9 +187,8 @@ body {
   column-gap: 4px;
   width: 120%;
   height: 120%;
-  margin-top: -14%;
+  margin-top: -10%;
   margin-left: -10%;
-  padding-top: 14%;
 
 }
 
@@ -262,24 +208,6 @@ body {
 .item-short {
   height: 64px;
 }
-
-.modal-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.modal-content-cards {
-  display: flex;
-  flex-direction: row;
-  width: 200%;
-  transition: var(--short);
-  transition-timing-function: var(--easeInOut);
-/*  margin-left: 100%;*/
-}
-
-
 
 .modal-text {
   text-align: center;
@@ -503,28 +431,12 @@ h3 {
   background-color: #ffffff;
   padding: 8px;
   color: #333333;
-  border-radius: 32px; 
-  font-size: 12px; 
-
-}
-
-.modal-closeup-right .modal-save {
   position: absolute;
-  top: 6px;
+  border-radius: 32px;
   right: 6px;
+  top: 6px;
+  font-size: 12px;
 
-}
-
-
-.item-main .modal-save {
-  position: relative;
-  transform: scale(.4);
-  display: inline-block;
-/*  transform-origin: 0 0;*/
-  top: -6px;
-  right: -20px;
-/*  padding: 8px;*/
-/*  width: 100%;*/
 }
  
 
@@ -554,15 +466,6 @@ h3 {
 }
 
 
-@keyframes buttonClickedHF {
-  0%{transform: scale(.4) }
-  70% {transform: scale(.4) }
-  80%{transform: scale(.45) }
-  100% {transform: scale(.4) }
-}
-
-
-
 @keyframes clickingArc {
   0%{transform: rotate(10deg) translate3d(15px, 0, 0)  }
   60%{transform: rotate(-10deg) translate3d(-15px, 0, 0) scale(.8) }
@@ -587,14 +490,6 @@ h3 {
   }
   100% {
     opacity: 1;
-  }
-}
-
-@keyframes scaleUp {
-  0% {
-  }
-  100% {
-    transform: scale(2.5) translateY(4px)
   }
 }
 
