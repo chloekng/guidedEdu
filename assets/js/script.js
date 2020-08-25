@@ -1,8 +1,11 @@
-
 $(document).ready(function() {
 
   // make the grid
   // if($('body').is('.homefeed')){
+  window.localStorage.setItem('hasClickthrough', 'false');
+  alert(localStorage.getItem('hasClickthrough'));
+  // alert(hasClickthrough)
+
 
   var colcade = new Colcade( '.grid', {
     columns: '.grid-col',
@@ -26,6 +29,24 @@ $(document).ready(function() {
 
   addImages(pins);
 
+  // bottom right
+  let bottomRight = document.createElement("div");
+  bottomRight.className = "bottom-right";
+
+  let plus = document.createElement("img");
+  plus.className = "bottom-right-icon plus";
+  plus.src = "assets/img/plus.svg";
+
+  let questionMark = document.createElement("img");
+  questionMark.className = "bottom-right-icon question-mark";
+  questionMark.src = "assets/img/question-mark.svg";
+
+  bottomRight.append(plus);
+  bottomRight.append(questionMark);
+  $(".app").append(bottomRight);
+
+
+
   // make education modal
 
   let modal = document.createElement("div");
@@ -36,23 +57,69 @@ $(document).ready(function() {
   masonryBg.className = "masonry-bg";
   modal.append(masonryBg);
 
-  let modalText = document.createElement("div");
-  modalText.className = "modal-text";
-  modal.append(modalText);
 
-  let modalSubtext = document.createElement("div")
-  modalSubtext.className = "modal-subtext";
-  modal.append(modalSubtext);
+  let modalContentCards = document.createElement("div");
+  modalContentCards.className = "modal-content-cards";
+  modal.append(modalContentCards);
 
-  let modalButton = document.createElement("div");
-  modalButton.className = "modal-button";
-  modal.append(modalButton);
+
+  for (let i = 0; i < 2; i++) {
+
+    let modalContent = document.createElement("div");
+    modalContent.className = "modal-content";
+    modalContentCards.append(modalContent)
+
+    let modalText = document.createElement("div");
+    modalText.className = "modal-text";
+    modalContent.append(modalText);
+
+    let modalSubtext = document.createElement("div")
+    modalSubtext.className = "modal-subtext";
+    modalContent.append(modalSubtext);
+
+    let modalButton = document.createElement("div");
+    modalContent.append(modalButton);
+
+    if (i == 0) {
+      // text
+      modalText.innerHTML = "Click on an idea you like to learn more about it";
+      modalSubtext.innerHTML = "Ideas are links from all over";
+      modalButton.innerHTML = "Next";
+      modalButton.className = "modal-button modal-button-0"
+
+    } else if (i == 1) {
+      modalText.innerHTML = "Save ideas to collections";
+      modalSubtext.innerHTML = "The more you save, the better our recommendations for you.";
+      modalButton.innerHTML = "Got it";
+      modalButton.className = "modal-button modal-button-1"
+
+
+    }
+
+  }
+
+  // modalHeader = document.createElement("div");
+  // modalHeader.className = "modal-header";
+  // modal.append(modalHeader);
+
+  let modalDotsContainer = document.createElement("div");
+  modalDotsContainer.className = "modal-dots-container";
+  modal.append(modalDotsContainer);
+
+  let modalDot1 = document.createElement("div");
+  modalDot1.className = "modal-dot";
+  modalDotsContainer.append(modalDot1);
+
+  let modalDot2 = document.createElement("div");
+  modalDot2.className = "modal-dot";
+  modalDotsContainer.append(modalDot2)
 
   let modalX = document.createElement("img");
   modalX.className = "modal-X";
   modalX.src = "assets/img/x.svg";
   // modalX.attr("src", "assets/img/x.svg");  
-  modal.append(modalX);
+  modal.append(modalX); 
+
 
   let handSvg = document.createElementNS("http://www.w3.org/2000/svg","svg");
   $(".modal").append(handSvg);
@@ -66,6 +133,7 @@ $(document).ready(function() {
   // customize for the hf 
 
   if ($('body').is('.homefeedPage')) {
+
 
     //masonry bg for modal
     let modalMasonry = document.createElement("div");
@@ -93,7 +161,7 @@ $(document).ready(function() {
     // pointer animation
 
     $(".handSvg").css("position", "absolute");
-    $(".handSvg").css("top", "20%");
+    $(".handSvg").css("top", "24%");
     $(".handSvg").css("left", "60%");
     $(".handSvg").css("animation-name", "clickingArc");
     $(".handSvg").css("animation-duration", "1.5s");
@@ -110,13 +178,68 @@ $(document).ready(function() {
     // $("#main").css("animation-direction", "alternate");
 
 
-    // text
-    modalText.innerHTML = "Click on an idea you like to learn more about it";
-    modalSubtext.innerHTML = "Ideas are links from all over"
-    modalButton.innerHTML = "Got it";
+    // this is the first step
+    $(modalDot1).addClass("modal-dot-active");
+    $(".modal-content-cards").css("margin-left", "100%")
+
+    $(".modal-button-0").click(function() {
+
+      // modal dot transition
+      $(modalDot1).removeClass("modal-dot-active");  
+      $(modalDot2).addClass("modal-dot-active");  
+      $(".modal-content-cards").css("margin-left", "-100%")
+
+
+      // scale up the pin
+      $(".masonry").not(".modal-save").css("animation-name", "scaleUp");
+      $(".masonry").css("animation-duration", "var(--short)");
+      $(".masonry").css("animation-iteration-count", "1");
+      $(".masonry").css("animation-fill-mode", "forwards");
+
+
+      //animate the save button 
+      let modalSave = document.createElement("div");
+      modalSave.className = "modal-save";
+      modalSave.innerHTML = "Save";
+      $(".item-main").append(modalSave);
+
+
+      $(".item-main").css("animation-name", "null")
+
+      $(".modal-save").css("animation-name", "buttonClickedHF");
+      $(".modal-save").css("animation-duration", "1.5s");
+      $(".modal-save").css("animation-iteration-count", "infinite");
+      $(".modal-save").css("animation-timing-function", "cubic-bezier(.63, .09, .3, .43");
+
+
+      $(".handSvg").css("top", "28%");
+      $(".handSvg").css("left", "64%");
+      $(".handSvg").css("animation-name", "clicking");
+      $(".handSvg").css("animation-duration", "1.5s");
+      $(".handSvg").css("animation-iteration-count", "infinite");
+      $(".handSvg").css("animation-direction", "normal");
+
+      // modalButton.innerHTML = "Got it";
+
+    });
 
 
   }
+
+
+  $(".modal-button-1").click(function() {
+   $(modal).hide()
+
+
+  });
+
+
+  $(".modal-X").click(function() {
+   $(modal).hide()
+
+
+  });
+
 
   if ($('body').is('.closeupPage')) {
 
@@ -139,10 +262,19 @@ $(document).ready(function() {
     modalSave.innerHTML = "Save"
     modalCloseupRight.append(modalSave);
 
+
+    // modal dot transition
+    $(modalDot1).removeClass("modal-dot-active");  
+    $(modalDot2).addClass("modal-dot-active");  
+    $(".modal-content-cards").css("margin-left", "-100%") 
+
     // text
-    modalText.innerHTML = "Save ideas to collections";
-    modalSubtext.innerHTML = "The more you save, the better our recommendations for you.";
-    modalButton.innerHTML = "Got it";
+
+    // console.log($(".modal-text")[1]);
+
+    // $(".modal-text")[1].innerHTML = "Save ideas to collections";
+    // $(".modal-subtext")[1].innerHTML = "The more you save, the better our recommendations for you.";
+    // $(".modal-button")[1].innerHTML = "Got it";
 
     //pointer animation 
     $(".handSvg").css("position", "absolute");
@@ -172,70 +304,71 @@ $(document).ready(function() {
 
 
   //got it button
-  $(".modal-button").click(function() {
+  // $(".modal-button").click(function() {
 
-    // $(".masonry-bg").addClass("hide");
-    // $(".masonry-bg").hide()
+  //   // $(".masonry-bg").addClass("hide");
+  //   // $(".masonry-bg").hide()
 
-    $(".masonry-bg" ).slideUp(160);
-    $(".masonry").hide(85);
-    $(".modal-closeup").hide(85);
-    $(".handSvg").hide(85);
-    $(".modal-button").hide(0);
-    $(".modal-text").hide(0);
-    $(".modal-subtext").hide(0);
-    $(".modal-X").hide(0);
+  //   $(".masonry-bg" ).slideUp(160);
+  //   $(".masonry").hide(85);
+  //   $(".modal-closeup").hide(85);
+  //   $(".handSvg").hide(85);
+  //   $(".modal-button").hide(0);
+  //   $(".modal-text").hide(0);
+  //   $(".modal-subtext").hide(0);
+  //   $(".modal-X").hide(0);
+  //   $(".modal-dots-container").hide(0);
 
-    let modalCollapsed = document.createElement("div");
-    modalCollapsed.className = "modal-collapsed";
+  //   let modalCollapsed = document.createElement("div");
+  //   modalCollapsed.className = "modal-collapsed";
   
-    $(".modal").append(modalCollapsed);
+  //   $(".modal").append(modalCollapsed);
 
 
-    let modalTextCollapsed = document.createElement("div");
-    modalTextCollapsed.className = "modal-text-collapsed";
+  //   let modalTextCollapsed = document.createElement("div");
+  //   modalTextCollapsed.className = "modal-text-collapsed";
 
-    let modalTextCollapsedA = document.createElement("div");
-    modalTextCollapsedA.innerHTML = "Come back for tips on how to use Pinterest!";
-    $(modalTextCollapsed).append(modalTextCollapsedA);
-    $(modalCollapsed).append(modalTextCollapsed);
-    // $(modalTextCollapsedA).css("animation-name", "fade");
-    // $(modalTextCollapsedA).css("animation-duration", "4s");
-    // $(modalTextCollapsedA).css("animation-fill-mode", "both");
-    // $(modalTextCollapsedA).css("animation-direction", "alternate");
-    // $(modalTextCollapsedA).css("animation-iteration-count", "infinite");
-    // $(modalTextCollapsedA).css("position", "absolute");
+  //   let modalTextCollapsedA = document.createElement("div");
+  //   modalTextCollapsedA.innerHTML = "Come back for tips on how to use Pinterest!";
+  //   $(modalTextCollapsed).append(modalTextCollapsedA);
+  //   $(modalCollapsed).append(modalTextCollapsed);
+  //   // $(modalTextCollapsedA).css("animation-name", "fade");
+  //   // $(modalTextCollapsedA).css("animation-duration", "4s");
+  //   // $(modalTextCollapsedA).css("animation-fill-mode", "both");
+  //   // $(modalTextCollapsedA).css("animation-direction", "alternate");
+  //   // $(modalTextCollapsedA).css("animation-iteration-count", "infinite");
+  //   // $(modalTextCollapsedA).css("position", "absolute");
 
-    // let modalTextCollapsedB = document.createElement("div");
-    // modalTextCollapsedB.innerHTML = "Come back here for tips on how to use Pinterest";
-    // $(modalTextCollapsed).append(modalTextCollapsedB);
-    // // $(modalTextCollapsedTips).hide(0);
-    // $(modalTextCollapsedB).css("position", "absolute");
-    // $(modalTextCollapsedB).css("animation-name", "fade");
-    // $(modalTextCollapsedB).css("animation-duration", "4s");
-    // $(modalTextCollapsedB).css("animation-fill-mode", "both");
-    // $(modalTextCollapsedB).css("animation-direction", "alternate-reverse");
-    // $(modalTextCollapsedB).css("animation-iteration-count", "infinite");
+  //   // let modalTextCollapsedB = document.createElement("div");
+  //   // modalTextCollapsedB.innerHTML = "Come back here for tips on how to use Pinterest";
+  //   // $(modalTextCollapsed).append(modalTextCollapsedB);
+  //   // // $(modalTextCollapsedTips).hide(0);
+  //   // $(modalTextCollapsedB).css("position", "absolute");
+  //   // $(modalTextCollapsedB).css("animation-name", "fade");
+  //   // $(modalTextCollapsedB).css("animation-duration", "4s");
+  //   // $(modalTextCollapsedB).css("animation-fill-mode", "both");
+  //   // $(modalTextCollapsedB).css("animation-direction", "alternate-reverse");
+  //   // $(modalTextCollapsedB).css("animation-iteration-count", "infinite");
 
 
-    let chevronSvg = document.createElementNS("http://www.w3.org/2000/svg","svg");
-    $(modalCollapsed).append(chevronSvg);
-    chevronSvg.setAttributeNS(null, 'width', 16);
-    chevronSvg.setAttributeNS(null, 'height', 16);
-    chevronSvg.setAttributeNS(null, 'viewBox', '0 0 16 16');
-    chevronSvg.innerHTML = '<path fill-rule="evenodd" clip-rule="evenodd" d="M0.439333 9.47C0.146667 9.76 0 10.1393 0 10.518C0 10.8973 0.146667 11.2767 0.439333 11.566C1.02533 12.1447 1.97467 12.1447 2.56067 11.566L8 6.192L13.4393 11.566C14.0253 12.1447 14.9747 12.1447 15.5607 11.566C16.1467 10.9873 16.1467 10.048 15.5607 9.47L8 2L0.439333 9.47Z" fill="white"/>'
-    chevronSvg.setAttribute("class","chevronSvg");
-    // $(".chevronSvg").css("border", "1px solid tomato");
-    // $(".chevronSvg").css("top", "20%");
-    // $(".chevronSvg").css("left", "60%");
+  //   let chevronSvg = document.createElementNS("http://www.w3.org/2000/svg","svg");
+  //   $(modalCollapsed).append(chevronSvg);
+  //   chevronSvg.setAttributeNS(null, 'width', 16);
+  //   chevronSvg.setAttributeNS(null, 'height', 16);
+  //   chevronSvg.setAttributeNS(null, 'viewBox', '0 0 16 16');
+  //   chevronSvg.innerHTML = '<path fill-rule="evenodd" clip-rule="evenodd" d="M0.439333 9.47C0.146667 9.76 0 10.1393 0 10.518C0 10.8973 0.146667 11.2767 0.439333 11.566C1.02533 12.1447 1.97467 12.1447 2.56067 11.566L8 6.192L13.4393 11.566C14.0253 12.1447 14.9747 12.1447 15.5607 11.566C16.1467 10.9873 16.1467 10.048 15.5607 9.47L8 2L0.439333 9.47Z" fill="white"/>'
+  //   chevronSvg.setAttribute("class","chevronSvg");
+  //   // $(".chevronSvg").css("border", "1px solid tomato");
+  //   // $(".chevronSvg").css("top", "20%");
+  //   // $(".chevronSvg").css("left", "60%");
 
-    // $(chevronSvg).click(function() {
-    //   console.log("hi")
-    // })
+  //   // $(chevronSvg).click(function() {
+  //   //   console.log("hi")
+  //   // })
   
 
 
-  });
+  // });
 
   // }
 
@@ -245,15 +378,22 @@ $(document).ready(function() {
 
   // grid item to closeup
   $(".grid-item").click(function() {
+
     let image = $(this)[0].style.backgroundImage;
 
     localStorage.setItem("imageURL", image);
 
-    window.location.href = "closeup.html";
+
+    localStorage.setItem('hasClickthrough', 'true');
+
+    alert(localStorage.getItem('hasClickthrough'));
+
+    window.location.href = "closeup.html";    
 
 
 
   });
+
 
   // closeup 
 
@@ -263,7 +403,21 @@ $(document).ready(function() {
 
   $(".back").click(function() {
 
+    alert(localStorage.getItem('hasClickthrough'));
+
     window.location.href = "index.html";
+    
+
+    // if (hasClickthrough) {
+    //   window.location.href = "index.html";
+
+    //   $(modalDot1).removeClass("modal-dot-active");  
+    //   $(modalDot2).addClass("modal-dot-active");  
+    //   $(".modal-content-cards").css("margin-left", "-200%") 
+
+
+    // }
+
 
 
   });
